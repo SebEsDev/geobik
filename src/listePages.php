@@ -2,7 +2,8 @@
 function getPage(){
     $lesPages['accueil']="accueil;0";
     $lesPages['inscription']="inscription;0";
-    $lesPages['connection']="connection;0";
+	$lesPages['connexion']="connexion;0";
+	$lesPages['dashboard']="dashboard;1";
 
     if(isset($_GET['page'])){
 		$page=$_GET['page'];
@@ -31,12 +32,12 @@ function getPage(){
 					$contenu=$explose[0];
 				}
 				else{
-					$contenu="Accueil";
+					$contenu="accueil";
 				}
 			}
 		}
 		else{
-			$contenu="Acceuil";
+			$contenu="accueil";
 		}
 	}
 	return $contenu;

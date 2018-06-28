@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once 'src/require.php';
 ?>
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8">

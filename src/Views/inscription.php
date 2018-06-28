@@ -7,7 +7,7 @@ function inscription($db){
             $user=new Users($db);
             $r=$user->insert($nom,$prenom,$date_naissance,$sexe,$email,$pays,$metier);
             if($r==1){
-                $msg='<div class="alert alert-success" role="alert"><h4 class="alert-heading">Inscription réussie !</h4><p>Aww yeah, bienvenue dans la grande famille de Geobik. Nous allons prochainement sortir notre nouveau produit, stay tuned ! Cliquez <a href="index.php">ici</a> pour revenir sur la page d\'acceuil.</p><hr><p class="mb-0">Vous allez recevoir un récapitulatif de votre inscription par mail.</p>
+                $msg='<div class="alert alert-success" role="alert"><h4 class="alert-heading">Inscription réussie !</h4><p>Aww yeah, bienvenue dans la grande famille de Geobik. Nous allons prochainement sortir notre nouveau produit, stay tuned ! Cliquez <a href="index.php">ici</a> pour revenir sur la page d\'accueil.</p><hr><p class="mb-0">Vous allez recevoir un récapitulatif de votre inscription par mail.</p>
                 </div>';
                 $from = "geobik.seb@gmail.com";
                 $to = "$email";
@@ -15,6 +15,13 @@ function inscription($db){
                 $subject = "[Geobik] Récapitulatif de votre inscription !";
                 $message = "Bonjour et merci de vous avoir inscrit sur Geobik.fr.\nVoici les détails de votre inscription :\nNom : $nom\nPrénom : $prenom\nDate de naissance : $date_naissance\nSexe : $sexe\nEmail : $email\nPays : $pays\nMétier : $metier.\n\nVous recevrez un email dès que le produit Geobik sera disponible !\n\nSi vous n'êtes pas à l'origine de cette inscription, dont worry c'est une erreur.";
                 mail($to,$subject,$message, $headers);
+                $subjectAdmin = "[Geobik] Nouvel inscrit !";
+                $messageAdmin = "Nouvelle inscription sur Geobik.fr.\nVoici les détails d'inscription :\nNom : $nom\nPrénom : $prenom\nDate de naissance : $date_naissance\nSexe : $sexe\nEmail : $email\nPays : $pays\nMétier : $metier.";
+                $admin=new Admin($db);
+                $q=$admin->selectAll();
+                foreach($q as $unAdmin){
+                    mail($unAdmin['email'],$subjectAdmin,$messageAdmin,$headers);
+                }
             }else{
                 $msg='<div class="alert alert-danger" role="alert">Erreur lors de l\'inscription, veuillez réessayer ultérieurement.</div>';
             }
@@ -22,7 +29,6 @@ function inscription($db){
             $msg='<div class="alert alert-danger" role="alert">Veuillez remplir tous les champs.</div>';
         }
     }
-
 ?>
     <div class="container">
         <div class="inscription">
