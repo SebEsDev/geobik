@@ -12,6 +12,7 @@ function connect($config){
 		//echo 'Echec'.$e->getMessage(); //->>Fonction pour afficher les messages d'erreurs
         $db=NULL;
 	}
+	$db->query("SET NAMES UTF8");
 	return $db;
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-require_once '../src/require.php';
+require_once 'src/require.php';
 ?>
 
 <html lang="fr">
@@ -10,7 +10,7 @@ require_once '../src/require.php';
   <title>Geobik</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/geobik.css">
+  <link rel="stylesheet" href="public/css/geobik.css">
 </head>
 <body>
 
@@ -18,12 +18,15 @@ require_once '../src/require.php';
   <a href="index.php" class="navbar-brand">Geobik</a>
 </nav>
 
-<div class="container">
-  <div class="inscription">
-    <p>Salut</p>
-    <a href="#" class="btn btn-dark" role="button">S'inscrire</a>
-  </div>
-</div>
+<?php
+$db=connect($config);
+if($db==NULL){
+	echo 'Problème.';
+}else{
+  $contenu=getPage();
+  $contenu($db);
+}
+?>
 
 </body>
 </html>
