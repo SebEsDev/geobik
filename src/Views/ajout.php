@@ -1,14 +1,12 @@
 <?php
-function inscription($db){
-
-    if(isset($_POST['btInscription'])){
+function ajout($db){
+    if(isset($_POST['btAjout'])){
         extract($_POST);
         if(!empty($nom) && !empty($prenom) && !empty($date_naissance) && !empty($sexe) && !empty($email) && !empty($pays) && !empty($metier)){  
             $user=new Users($db);
             $r=$user->insert($nom,$prenom,$date_naissance,$sexe,$email,$pays,$metier);
             if($r==1){
-                $msg='<div class="alert alert-success" role="alert"><h4 class="alert-heading">Inscription réussie !</h4><p>Aww yeah, bienvenue dans la grande famille de Geobik. Nous allons prochainement sortir notre nouveau produit, stay tuned ! Cliquez <a href="index.php">ici</a> pour revenir sur la page d\'accueil.</p><hr><p class="mb-0">Vous allez recevoir un récapitulatif de votre inscription par mail.</p>
-                </div>';
+                $msg='<div class="alert alert-success" role="alert">Ajout effectué.</div>';
                 $from = "geobik.seb@gmail.com";
                 $to = "$email";
                 $headers = "From:" . $from;
@@ -39,7 +37,7 @@ function inscription($db){
                 echo $msg;
             }?>
            
-            <h1>Inscription</h1>
+            <h1>Ajouter un utilisateur</h1>
 
             <form method="POST">
                 <div class="form-group">
@@ -68,17 +66,17 @@ function inscription($db){
                 </div>
                 <div class="form-group">
                     <label>Pays</label>
-                    <input readonly class="form-control" id="pays" name="pays" value="<?php echo $_SESSION['pays']; ?>">
+                    <input class="form-control" id="pays" name="pays">
                 </div>
                 <div class="form-group">
                     <label>Métier</label>
                     <select class="form-control" id="metier" name="metier">
-                    <?php foreach($liste as $metier){ 
+                        <?php foreach($liste as $metier){ 
                             echo '<option value="'.$metier['intitule'].'">'.$metier['intitule'].'</option>';
                         }?>
                     </select>
                 </div>
-                <button type="submit" id="btInscription" name="btInscription" class="btn btn-primary">S'inscrire</button>
+                <button type="submit" id="btAjout" name="btAjout" class="btn btn-primary">Ajouter</button>
             </form>
 
         </div>

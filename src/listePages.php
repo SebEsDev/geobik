@@ -4,6 +4,8 @@ function getPage(){
     $lesPages['inscription']="inscription;0";
 	$lesPages['connexion']="connexion;0";
 	$lesPages['dashboard']="dashboard;1";
+	$lesPages['ajout']="ajout;1";
+	$lesPages['modif']="modif;1";
 
     if(isset($_GET['page'])){
 		$page=$_GET['page'];

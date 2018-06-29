@@ -29,6 +29,13 @@ if($db==NULL){
 }
 ?>
 
+  <div class="container">
+    <div class="footer">© 2018 Geobik:
+      <a href="?page=connexion">Administration</a>
+    </div>
+  </div>
+
+
 </body>
 </html>
 

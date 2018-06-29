@@ -26,7 +26,7 @@ function connexion($db){
                 echo $msg;
             }?>
 
-            <h1>Connexion</h1>
+            <h1>Connexion à l'espace d'administration</h1>
 
             <form method="POST">
                 <div class="form-group">
