@@ -1,5 +1,5 @@
 <?php
-
+//Non utilisé, permet de créer une table pays pour créer une liste déroulante et administrer les différents pays + stats
 class Pays{
 
     private $select;

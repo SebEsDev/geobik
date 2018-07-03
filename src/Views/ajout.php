@@ -1,4 +1,5 @@
 <?php
+
 function ajout($db){
     if(isset($_POST['btAjout'])){
         extract($_POST);
@@ -31,14 +32,17 @@ function ajout($db){
     $liste=$metiers->select();
 ?>
     <div class="container">
-        <div class="inscription">
-
-            <?php if(isset($msg)) {
-                echo $msg;
-            }?>
+        <div class="ajout">
+<?php
+    if(isset($msg)) {
+        echo $msg;  
+    }
+?>
            
-            <h1>Ajouter un utilisateur</h1>
-
+            <h1>Ajouter un utilisateur
+                <small class="text-muted"><a href="?page=dashboard">Retour dashboard</a></small>
+            </h1>
+            <hr/>
             <form method="POST">
                 <div class="form-group">
                     <label>Nom</label>
@@ -78,7 +82,6 @@ function ajout($db){
                 </div>
                 <button type="submit" id="btAjout" name="btAjout" class="btn btn-primary">Ajouter</button>
             </form>
-
         </div>
     </div>
 <?php

@@ -1,6 +1,6 @@
 <?php
-function inscription($db){
 
+function inscription($db){
     if(isset($_POST['btInscription'])){
         extract($_POST);
         if(!empty($nom) && !empty($prenom) && !empty($date_naissance) && !empty($sexe) && !empty($email) && !empty($pays) && !empty($metier)){  
@@ -9,7 +9,7 @@ function inscription($db){
             if($r==1){
                 $msg='<div class="alert alert-success" role="alert"><h4 class="alert-heading">Inscription réussie !</h4><p>Aww yeah, bienvenue dans la grande famille de Geobik. Nous allons prochainement sortir notre nouveau produit, stay tuned ! Cliquez <a href="index.php">ici</a> pour revenir sur la page d\'accueil.</p><hr><p class="mb-0">Vous allez recevoir un récapitulatif de votre inscription par mail.</p>
                 </div>';
-                $from = "geobik.seb@gmail.com";
+                $from = "geobik.seb@gmail.com";  //set up email
                 $to = "$email";
                 $headers = "From:" . $from;
                 $subject = "[Geobik] Récapitulatif de votre inscription !";
@@ -19,7 +19,7 @@ function inscription($db){
                 $messageAdmin = "Nouvelle inscription sur Geobik.fr.\nVoici les détails d'inscription :\nNom : $nom\nPrénom : $prenom\nDate de naissance : $date_naissance\nSexe : $sexe\nEmail : $email\nPays : $pays\nMétier : $metier.";
                 $admin=new Admin($db);
                 $q=$admin->selectAll();
-                foreach($q as $unAdmin){
+                foreach($q as $unAdmin){   //email à chacun des admins
                     mail($unAdmin['email'],$subjectAdmin,$messageAdmin,$headers);
                 }
             }else{
@@ -34,13 +34,13 @@ function inscription($db){
 ?>
     <div class="container">
         <div class="inscription">
-
-            <?php if(isset($msg)) {
-                echo $msg;
-            }?>
-           
+<?php
+    if(isset($msg)) {
+        echo $msg;
+    }
+?>
             <h1>Inscription</h1>
-
+            <hr/>
             <form method="POST">
                 <div class="form-group">
                     <label>Nom</label>
@@ -73,14 +73,15 @@ function inscription($db){
                 <div class="form-group">
                     <label>Métier</label>
                     <select class="form-control" id="metier" name="metier">
-                    <?php foreach($liste as $metier){ 
-                            echo '<option value="'.$metier['intitule'].'">'.$metier['intitule'].'</option>';
-                        }?>
+<?php
+    foreach($liste as $metier){ 
+        echo '<option value="'.$metier['intitule'].'">'.$metier['intitule'].'</option>';
+    }
+?>
                     </select>
                 </div>
-                <button type="submit" id="btInscription" name="btInscription" class="btn btn-primary">S'inscrire</button>
+                <button type="submit" id="btInscription" name="btInscription" class="btn btn-light">S'inscrire</button>
             </form>
-
         </div>
     </div>
 <?php

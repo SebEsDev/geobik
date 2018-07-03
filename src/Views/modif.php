@@ -1,4 +1,5 @@
 <?php
+
 function modif($db){
     if(isset($_POST['btModif'])){
         extract($_POST);
@@ -8,7 +9,7 @@ function modif($db){
             if($r==1){
                 $msg='<div class="alert alert-success" role="alert">Modification effectué. Cliqué <a href="index.php?page=dashboard">ici</a> pour retourner au dashboard.</div>';
             }else{
-                $msg='<div class="alert alert-danger" role="alert">Erreur lors de la modification : pas de changement ou alors n\'oubliez pas que les doublons d\'emails sont INTERDIT.</div>';
+                $msg='<div class="alert alert-danger" role="alert">Erreur lors de la modification : pas de changement ou alors n\'oubliez pas que les doublons d\'emails sont INTERDITS.</div>';
             }
         }else{
             $msg='<div class="alert alert-danger" role="alert">Veuillez remplir tous les champs.</div>';
@@ -21,12 +22,14 @@ function modif($db){
 ?>
     <div class="container">
         <div class="inscription">
-
-            <?php if(isset($msg)) {
-                echo $msg;
-            }?>
-           
-            <h1>Modifier cet utilisateur</h1>
+<?php
+    if(isset($msg)){
+        echo $msg;
+    }
+?>
+            <h1>Modifier cet utilisateur
+                <small class="text-muted"><a href="?page=dashboard">Retour dashboard</a></small>
+            </h1>
             <form method="POST">
                 <input type="hidden" value="<?php echo $user['id']?>" name="id" id="id" />
                 <div class="form-group">
@@ -60,19 +63,20 @@ function modif($db){
                 <div class="form-group">
                     <label>Métier</label>
                     <select class="form-control" id="metier" name="metier">
-                   <?php foreach($liste as $metier){
-						if($metier['intitule']==$user['metier']){
-							echo '<option value="'.$metier['intitule'].'" selected>'.$metier['intitule'].'</option>';
-						}
-						else{
-							echo '<option value="'.$metier['intitule'].'">'.$metier['intitule'].'</option>';
-						}
-					} ?>
+<?php
+    foreach($liste as $metier){
+        if($metier['intitule']==$user['metier']){
+            echo '<option value="'.$metier['intitule'].'" selected>'.$metier['intitule'].'</option>';
+        }
+        else{
+            echo '<option value="'.$metier['intitule'].'">'.$metier['intitule'].'</option>';
+        }
+    }
+?>
                     </select>
                 </div>
                 <button type="submit" id="btModif" name="btModif" class="btn btn-success">Modifier</button>
             </form>
-
         </div>
     </div>
 <?php

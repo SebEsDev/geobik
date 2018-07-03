@@ -1,21 +1,64 @@
-body, h1, h2, a{
+/* GENERAL */
+*{
     margin: 0px;
     padding: 0px;
+}
+a{
+    text-decoration: none;
+    color: aaa;
+}
+body{
+    font-size: 16px;
     font-family: 'Montserrat', sans-serif;
+    background-color: #ece2df;
+}
+h1{
+    text-transform: uppercase;
 }
 
+/*COMMUN*/
+.inscription, .connexion, .accueil, .accueil_admin, .dashboard, .ajout{
+    margin: 42 auto;
+}
+
+/* ACCUEIL */
 .accueil{
-    margin-top: 26px;
-}
-
-.accueil h1, h2, p, a{
     text-align: center;
 }
-
-.inscription{
-    margin-top: 16px;
+.accueil h1{
+    text-transform: uppercase;
+}
+#contour{
+    margin: 24 0 24 0;
+    padding: 7px;
+    border: 2px solid #aa7a6e;
+    border-radius: 3px;
 }
 
-.connexion{
-    margin-top: 16px;
+/*ACCUEIL ADMIN*/
+.accueil_admin a{
+    margin-top: 10.5px;
 }
+
+/*INSCRIPTION*/
+.inscription #btInscription{
+    margin-top: 10.5px;
+}
+
+/*CONNEXION*/
+.connexion #btConnecter{
+    margin-top: 10.5px;
+}
+
+/*DASHBOARD*/
+.dashboard a, button{
+    margin-top: 10.5px;
+}
+
+/*AJOUT*/
+.ajout #btAjout{
+    margin-top: 10.5px;
+}
+
+
+

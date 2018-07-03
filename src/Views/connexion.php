@@ -1,14 +1,14 @@
 <?php
-function connexion($db){
 
+function connexion($db){
     if(isset($_POST['btConnecter'])){
         extract($_POST);
         if(!empty($email) && !empty($password)){  
             $admin=new Admin($db);
-            $r=$admin->connexion($email,$password);
+            $r=$admin->connexion($email,$password);   //connexion avec email et mdp
             if($r!=FALSE){
                 $_SESSION['email']=$email;
-                $_SESSION['role']=1;
+                $_SESSION['role']=1;   //role getPage, sécurise l'accès aux pages
                 accueil();
                 exit;
             }else{
@@ -21,13 +21,13 @@ function connexion($db){
 ?>
     <div class="container">
         <div class="connexion">
-
-            <?php if(isset($msg)) {
-                echo $msg;
-            }?>
-
+<?php
+    if(isset($msg)) {
+        echo $msg;
+    }
+?>
             <h1>Connexion à l'espace d'administration</h1>
-
+            <hr/>
             <form method="POST">
                 <div class="form-group">
                     <label>Email</label>
@@ -37,9 +37,8 @@ function connexion($db){
                     <label>Mot de passe</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
-                <button type="submit" class="btn btn-primary" id="btConnecter" name="btConnecter">Se connecter</button>
+                <button type="submit" class="btn btn-light" id="btConnecter" name="btConnecter">Se connecter</button>
             </form>
-
         </div>
     </div>
 <?php
