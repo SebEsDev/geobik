@@ -21,7 +21,7 @@ $db=connect($config);
 if($db==NULL){
 	echo 'Problème.';
 }else{
-  $contenu=getPage();
+  $contenu=getPage();   //voir listePage.php, sécurise l'accès aux pages
   $contenu($db);
 }
 ?>
