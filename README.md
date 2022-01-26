@@ -1,6 +1,6 @@
 # GEOBIK
 
-Projet réalisé en 3 jours dans le but d'un exercice donné par un recruteur.
+Projet réalisé en 3 jours, exercice de recrutement.
 
 ## Enoncé
 
